@@ -20,14 +20,8 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-
-      - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v3
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-      - name: generate
-        run: |
-          curl -Os https://uploader.codecov.io/latest/windows/codecov
-          chmod +x codecov
-          ./codecov -t ${{ secrets.CODECOV_TOKEN }}}
+      - uses: actions/checkout@master
+      - uses: codecov/codecov-action@v3
+        with:
+         token: ${{ secrets.CODECOV_TOKEN }}
 
